@@ -1,17 +1,22 @@
 #!/usr/bin/python3
-""" Defines lockboxes """
-
 
 def canUnlockAll(boxes):
-    """ Determines whether all boxes can be unlocked or not
-    Returns: True if all boxes can be unlocked  and
-             False if not
-             """
-    keys = [0]
-    for key in keys:
-        for val in boxes[key]:
-            if val not in keys:
-                keys.append(val)
-    if len(keys) == len(boxes):
-        return True
-    return False
+    def explore_box(box_index):
+        visited.add(box_index)
+        for key in boxes[box_index]:
+            if key not in visited:
+                explore_box(key)
+
+    n = len(boxes)
+    visited = set()
+    explore_box(0)
+
+    return len(visited) == n
+
+# Example usage:
+if __name__ == "__main__":
+    boxes = [[1], [2], [3], []]
+    print(canUnlockAll(boxes))  # Output: True
+
+    boxes = [[1, 2], [3], [], []]
+    print(canUnlockAll(boxes))  # Output: False
