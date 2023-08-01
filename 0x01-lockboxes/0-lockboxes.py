@@ -12,11 +12,3 @@ def canUnlockAll(boxes):
     explore_box(0)
 
     return len(visited) == n
-
-# Example usage:
-if __name__ == "__main__":
-    boxes = [[1], [2], [3], []]
-    print(canUnlockAll(boxes))  # Output: True
-
-    boxes = [[1, 2], [3], [], []]
-    print(canUnlockAll(boxes))  # Output: False
